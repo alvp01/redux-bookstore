@@ -1,38 +1,37 @@
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
-import { addBook } from '../redux/books/books';
+import BookstoreAPI from '../services/BookstoreAPI';
 
 const BookForm = () => {
-  const dispatch = useDispatch();
   const [fieldValue, setValue] = useState({
     author: '',
     title: '',
     category: 'Action',
   });
-
-  const changeInput = (event) => {
+  const dispatch = useDispatch();
+  const changeInput = (e) => {
     setValue({
       ...fieldValue,
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   };
-
   const addBookToList = (event) => {
     event.preventDefault();
     if (fieldValue.title.trim() && fieldValue.author.trim()) {
       const newBook = {
         id: uuidv4(),
-        author: fieldValue.author,
         title: fieldValue.title,
+        author: fieldValue.author,
         category: fieldValue.category,
       };
-      dispatch(addBook(newBook));
+      dispatch(BookstoreAPI.addBooktoAPI(newBook));
       setValue({
-        title: '',
         author: '',
+        title: '',
         category: 'Action',
       });
+      dispatch(BookstoreAPI.getAllBooksFromAPI());
     }
   };
 
@@ -44,9 +43,9 @@ const BookForm = () => {
           <input
             type="text"
             placeholder="Book title"
-            name="title"
-            onChange={changeInput}
             value={fieldValue.title}
+            onChange={changeInput}
+            name="title"
             required
           />
         </div>
@@ -54,17 +53,17 @@ const BookForm = () => {
           <input
             type="text"
             placeholder="Book author"
+            value={fieldValue.author}
             name="author"
             onChange={changeInput}
-            value={fieldValue.author}
             required
           />
         </div>
         <div>
           <select
-            onChange={changeInput}
-            name="category"
             value={fieldValue.category}
+            name="category"
+            onChange={changeInput}
           >
             <option>Action</option>
             <option>Classics</option>
