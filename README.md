@@ -2,6 +2,12 @@
 
 Microverse first react/redux project
 
+## About the app
+
+![bookshelf](./bookstore.png)
+
+This app allows the user to add books to a virtual bookshelf and move them from it. In the future the app will include the features to keep track of the read chapters, edit the book information and leave comments on such books.
+
 ## Learning objetives
 
 - Learn to manage app state using redux
