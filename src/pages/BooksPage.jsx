@@ -2,11 +2,11 @@ import React from 'react';
 import BookList from '../components/BookList';
 import BookForm from '../components/BookForm';
 
-const BooksPage = () => (
-  <div className="container">
+const Books = () => (
+  <div className="book-page-container d-flex flex-column w-100">
     <BookList />
     <BookForm />
   </div>
 );
 
-export default BooksPage;
+export default Books;
