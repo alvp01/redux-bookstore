@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import BookstoreAPI from '../services/BookstoreAPI';
 
 const Book = ({
@@ -20,7 +19,7 @@ const Book = ({
           {title}
         </h2>
         <h4 className="book-author">{author}</h4>
-        <div className="d-flex flex-row">
+        <div className="d-flex flex-row btn-link-container">
           <button type="button" className="btn-link">Comments</button>
           <button type="button" onClick={handleClick} className="btn-link">Remove</button>
           <button type="button" className="btn-link">Edit</button>
@@ -28,7 +27,15 @@ const Book = ({
       </div>
       <div className="book-progress d-flex flex-row">
         <div className="progress d-flex flex-row">
-          <AiOutlineLoading3Quarters />
+          <div className="indicator">
+            <div>
+              <div className="centr over50 p75">
+                <div className="valueBar" />
+                <div className="leftHalf" />
+              </div>
+              <div className="centrV" />
+            </div>
+          </div>
           <div className="completion-container">
             <p className="completion-number">
               {`${progressPercentage}%`}
